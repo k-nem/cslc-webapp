@@ -195,6 +195,7 @@ def hymn(num):
 
     #ids0p = []
 
+    idsp = {}
 
     ids0 = []
     ids1 = []
@@ -256,7 +257,7 @@ def hymn(num):
     con.commit()
     con.close()
 
-    return render_template("hymn.html", hlist = hlist, current = curlist, crumbs = crumbs, idsp = idsp, ids = ids)
+    return render_template("hymn.html", hlist = hlist, current = curlist, crumbs = crumbs, idsp = idsp)
 
 
 
