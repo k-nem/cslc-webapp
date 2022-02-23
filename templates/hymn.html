@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% set active_page = "texts" %}
+
+{% block title %}
+Гимн {{ h_id }}
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- {{ids}} -->
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{url_for('texts')}}">Тексты</a></li>
+      {% if crumbs %}
+        {% for crumb in crumbs %}
+          <li class="breadcrumb-item"><a href="{{url_for('view', num = crumb[0])}}">{{crumb[1]}}</a></li>
+        {% endfor %}
+      {% endif %}
+      <li class="breadcrumb-item" aria-current="page"><a href="{{url_for('hymns', num = current[0])}}">Абзац {{current[2]}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Гимн {{hlist[2]}}</li>
+    </ol>
+  </nav>
+
+  <h4>Гимн</h4>
+
+    <p><b>Текст</b><br>{{hlist[1]}}</p>
+    <hr>
+
+  {% if idsp[1] %}
+  <h4 style='margin-top: 30px;'>Полные дубликаты: {{idsp[1]|length}} <a style='text-decoration: none;' href="{{url_for('about')}}">ⓘ</a></h4>
+
+
+      <ul class="list-group similar">
+        {% for id in idsp[1] %}
+
+        <li class="list-group-item list-group-item-action text-primary">
+          <small style="color: black">
+            {% if id[1] %}
+              {% for crumb in id[1] %}
+                <a href="{{url_for('view', num = crumb[0])}}">{{crumb[1]}}</a> /
+              {% endfor %}
+            {% endif %}
+            <a href="{{url_for('hymns', num = id[2][0])}}">Абзац {{id[2][1]}}</a> /
+            <a href="{{url_for('hymn', num = id[3][0])}}">Гимн {{id[3][1]}}</a>
+            </small>
+
+            </li>
+        {% endfor %}
+      </ul>
+
+
+  {% else %}
+
+  <h4 style='margin-top: 30px;'>Полных дубликатов нет <a style='text-decoration: none;' href="{{url_for('about')}}">ⓘ</a></h4>
+
+  {% endif %}
+
+  {% if idsp[2] %}
+  <h4 style='margin-top: 30px;'> Дубликаты без учета регистра и пунктуации: {{idsp[2]|length}} <a style='text-decoration: none' href="{{url_for('about')}}">ⓘ</a></h4>
+
+
+
+      <ul class="list-group similar">
+        {% for id in idsp[2] %}
+
+        <li class="list-group-item list-group-item-action text-primary">
+          <small style="color: black">
+            {% if id[1] %}
+            {{id[3][3]}}<br>
+              {% for crumb in id[1] %}
+                <a href="{{url_for('view', num = crumb[0])}}">{{crumb[1]}}</a> /
+              {% endfor %}
+            {% endif %}
+            <a href="{{url_for('hymns', num = id[2][0])}}">Абзац {{id[2][1]}}</a> /
+            <a href="{{url_for('hymn', num = id[3][0])}}">Гимн {{id[3][1]}}</a>
+            </small>
+
+            </li>
+        {% endfor %}
+      </ul>
+
+
+  {% else %}
+
+  <h4 style='margin-top: 30px;'>Дубликатов без учета регистра и пунктуации нет<a style='text-decoration: none' href="{{url_for('about')}}">ⓘ</a></h4>
+
+  {% endif %}
+
+
+  {% if idsp[3] %}
+  <h4 style='margin-top: 30px;'> Похожие по смыслу: {{idsp[3]|length}} <a style='text-decoration: none' href="{{url_for('about')}}">ⓘ</a></h4>
+
+
+
+      <ul class="list-group similar">
+        {% for id in idsp[3] %}
+
+        <li class="list-group-item list-group-item-action text-primary">
+          <small style="color: black">
+            {% if id[1] %}
+            {{id[3][3]}}<br>
+              {% for crumb in id[1] %}
+                <a href="{{url_for('view', num = crumb[0])}}">{{crumb[1]}}</a> /
+              {% endfor %}
+            {% endif %}
+            <a href="{{url_for('hymns', num = id[2][0])}}">Абзац {{id[2][1]}}</a> /
+            <a href="{{url_for('hymn', num = id[3][0])}}">Гимн {{id[3][1]}}</a>
+            </small>
+
+            </li>
+        {% endfor %}
+      </ul>
+
+
+  {% else %}
+
+  <h4 style='margin-top: 30px;'>Похожих по смыслу не найдено <a style='text-decoration: none' href="{{url_for('about')}}">ⓘ</a></h4>
+
+  {% endif %}
+
+{% endblock %}

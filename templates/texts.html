@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% set active_page = "texts" %}
+
+{% block title %}
+Тексты
+{% endblock %}
+
+{% block content %}
+
+  <h1>Тексты</h1>
+  <div class="list-group">
+    {% for row in rows %}
+    <a href="{{url_for('view', num = row['id'])}}" class="list-group-item list-group-item-action text-primary">{{row["name_long"]}}</a>
+    {% endfor %}
+  </div>
+
+
+{% endblock %}

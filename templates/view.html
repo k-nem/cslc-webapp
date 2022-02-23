@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% set active_page = "texts" %}
+
+{% block title %}
+Просмотр
+{% endblock %}
+
+{% block content %}
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{url_for('texts')}}">Тексты</a></li>
+      {% if crumbs %}
+        {% for crumb in crumbs %}
+          <li class="breadcrumb-item"><a href="{{url_for('view', num = crumb[0])}}">{{crumb[1]}}</a></li>
+        {% endfor %}
+      {% endif %}
+      <li class="breadcrumb-item active" aria-current="page">{{current[1]}}</li>
+    </ol>
+  </nav>
+
+  <h3>{{current[1]}}</h3>
+
+  {% if rows %}
+
+  <h4>Главы</h4>
+
+  <div class="list-group">
+    {% for row in rows %}
+    <a href="{{url_for('view', num = row['id'])}}" class="list-group-item list-group-item-action text-primary">{{row["name_long"]}}</a>
+    {% endfor %}
+  </div>
+
+  {% endif %}
+
+  {% if pars %}
+
+  <h4>Абзацы</h4>
+
+    <div class="list-group">
+      {% for par in pars %}
+      <a href="{{url_for('hymns', num = par['id'])}}" class="list-group-item list-group-item-action"><small class="text-secondary">{{par["order_id"]}}:</small> {{par["txt"]}}</a>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+
+{% endblock %}

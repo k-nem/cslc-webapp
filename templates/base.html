@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro">
+    <style>
+    body {
+      background-color: SeaShell;
+      font-family: 'Source Serif Pro';
+    }
+
+    h1,h2,h3,h4,h5 {
+      font-weight: bold;
+    }
+
+    .similar a {
+      color: midnightblue ;
+    }
+
+    </style>
+    <title>ЦСЛ Корпус - {% block title %}{% endblock %}</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/" style="margin-left: 20px" >
+      <img src="{{ url_for('static', filename='img/book.png') }}" alt="" width="24" height="24" class="d-inline-block align-text-top">
+      Церковнославянский корпус
+    </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link {{ 'active' if active_page == 'home' else '' }}" href="/">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  {{ 'active' if active_page == 'texts' else '' }}" href="{{url_for('texts')}}">Тексты</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ 'active' if active_page == 'about' else '' }}" href="{{url_for('about')}}">О корпусе</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ 'active' if active_page == 'gloss' else '' }}" href="{{url_for('gloss')}}">Глоссарий</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+<div class="container" style="max-width:800px; padding: 60px; background-color: white; border: 1px solid Tan;">
+
+    {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+
+</div>
+
+
+<!-- <footer class="bg-transparent text-center" style="margin-top: 60px;">
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2022 ВШЭ / <a href="https://liturcorpora.ru/">liturcorpora.ru</a>
+  </div>
+
+</footer> -->
+
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>

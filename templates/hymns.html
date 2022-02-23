@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% set active_page = "texts" %}
+
+{% block title %}
+Просмотр
+{% endblock %}
+
+{% block content %}
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{url_for('texts')}}">Тексты</a></li>
+      {% if crumbs %}
+        {% for crumb in crumbs %}
+          <li class="breadcrumb-item"><a href="{{url_for('view', num = crumb[0])}}">{{crumb[1]}}</a></li>
+        {% endfor %}
+      {% endif %}
+      <li class="breadcrumb-item active" aria-current="page">Абзац {{current[2]}}</li>
+    </ol>
+  </nav>
+
+  <h4>Гимны</h4>
+      {% if hymns %}
+
+
+      <div class="list-group">
+        {% for hymn in hymns %}
+          {% if hymn['style'] == 0 %}
+
+            <a class="list-group-item list-group-item-action"  href="{{url_for('hymn', num = hymn['id'])}}">
+            {{hymn["order_id"] + 1}}: {{hymn["txt"]}}
+            </a>
+
+          {% else %}
+
+            <a class="list-group-item list-group-item-action text-danger"  href="{{url_for('hymn', num = hymn['id'])}}">
+            {{hymn["order_id"] + 1}}: {{hymn["txt"]}}
+            </a>
+          {% endif %}
+
+        {% endfor %}
+      </div>
+    {% endif %}
+
+{% endblock %}

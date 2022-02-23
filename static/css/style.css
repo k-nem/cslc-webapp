@@ -1,0 +1,47 @@
+body {
+  font-family: 'Georgia';
+  background-color: AntiqueWhite;
+}
+
+span.number {
+  font-weight: bold;
+}
+
+div.content {
+  margin: auto;
+  max-width: 640px;
+  background-color: white;
+  padding: 40px 40px;
+  box-shadow: 0px 2px 5px RosyBrown;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: lightgray;
+}
+
+p {
+  font-size: 1.1em;
+}
+
+
+a {
+  color: Teal;
+}
+
+a:visited {
+  color: Teal;
+}
+
+a:hover {
+  color: LightSeaGreen;
+}
+
+a.back:hover {
+  cursor: pointer;
+}
+
+a.hymn{
+  color: black;
+}
